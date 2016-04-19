@@ -29,3 +29,14 @@
 - name: sshd is enabled and started
   service: name=sshd state=running enabled=yes
   tags: sshd
+
+- name: iptables is enabled and started
+  service: name=iptables state=running enabled=yes
+  tags: iptables
+
+#- name: iptables is configured
+#  become : yes
+#  template: src="iptables" dest="/etc/sysconfig/iptables" owner=root group=root mode=0600
+#  notify:
+#    - restart iptables
+#  tags: iptables
