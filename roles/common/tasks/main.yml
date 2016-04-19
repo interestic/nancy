@@ -19,3 +19,13 @@
 
 #- name: sudo configured
 #  copy: src="sudoers" dest="/etc/sudoers" owner=root group=root mode=0440
+
+- name: sshd is configured
+  notify:
+    - restart sshd
+  copy: src="sshd_config" dest="/etc/ssh/sshd_config" owner=root group=root mode=0600
+  tags: sshd
+
+- name: sshd is enabled and started
+  service: name=sshd state=running enabled=yes
+  tags: sshd
