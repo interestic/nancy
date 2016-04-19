@@ -1,0 +1,15 @@
+[webserver]
+27.120.106.27
+
+[dbserver]
+27.120.106.27
+
+[webservers:children]
+webserver
+
+[dbservers:children]
+dbserver
+
+[servers:children]
+webserver
+dbserver
