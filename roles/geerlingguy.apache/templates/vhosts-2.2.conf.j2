@@ -1,6 +1,16 @@
 {{ apache_global_vhost_settings }}
 
 {# Set up VirtualHosts #}
+
+<VirtualHost _default_:80>
+    ServerAdmin nancy
+    DocumentRoot /var/www/html
+    ServerName default
+    ErrorLog /var/log/httpd/default-error_log
+    CustomLog /var/log/httpd/default-access_log common
+#    Redirect permanent / https://www.pranalyzer.jp/
+</VirtualHost>
+
 {% for vhost in apache_vhosts %}
 <VirtualHost *:{{ apache_listen_port }}>
   ServerName {{ vhost.servername }}

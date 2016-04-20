@@ -30,3 +30,9 @@ $ ansible-galaxy install geerlingguy.php
 $ ansible-galaxy install geerlingguy.mysql
 $ ansible-galaxy install geerlingguy.php-mysql
 ```
+
+##munin
+[こちら](http://27.120.106.27/munin/)  
+
+*basic auth*  
+roles/geerlingguy.munin/default/munin.yaml:20-21
