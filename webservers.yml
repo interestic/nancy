@@ -2,3 +2,7 @@
 - hosts: webservers
   roles:
     - common
+#    - geerlingguy.repo-remi
+#    - geerlingguy.repo-epel
+    - geerlingguy.munin-node
+    - geerlingguy.apache
