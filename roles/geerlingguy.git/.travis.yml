@@ -8,13 +8,13 @@ env:
   #   init: /usr/lib/systemd/systemd
   #   run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
   #   SITE: source
-  #   GIT_VERSION: 2.7.1
+  #   GIT_VERSION: 2.8.1
   - distribution: ubuntu
     version: 14.04
     init: /sbin/init
     run_opts: ""
     SITE: source
-    GIT_VERSION: 2.7.1
+    GIT_VERSION: 2.8.1
 
   # Test package install on all supported OSes.
   - distribution: centos
