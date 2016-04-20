@@ -6,5 +6,8 @@
     - { role: geerlingguy.repo-epel }
     - { role: geerlingguy.munin-node }
     - { role: geerlingguy.apache }
+    - { role: geerlingguy.php }
+    - { role: geerlingguy.mysql }
+    - { role: geerlingguy.php-mysql }
     - { role: geerlingguy.git }
     - { role: 5003.rbenv }

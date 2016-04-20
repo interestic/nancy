@@ -1,5 +1,5 @@
 ---
-apache_enablerepo: ""
+apache_enablerepo: "remi"
 
 apache_listen_port: 80
 apache_listen_port_ssl: 443
