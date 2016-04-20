@@ -7,3 +7,4 @@
     - { role: geerlingguy.munin-node }
     - { role: geerlingguy.apache }
     - { role: geerlingguy.git }
+    - { role: 5003.rbenv }

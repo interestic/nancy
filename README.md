@@ -18,4 +18,5 @@ $ ansible-galaxy install geerlingguy.repo-epel
 $ ansible-galaxy install geerlingguy.munin-node
 $ ansible-galaxy install geerlingguy.apache
 $ ansible-galaxy install geerlingguy.git
+$ ansible-galaxy install 5003.rbenv
 ```
