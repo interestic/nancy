@@ -17,8 +17,8 @@
   with_items: '{{users}}'
   tags: users
 
-#- name: sudo configured
-#  copy: src="sudoers" dest="/etc/sudoers" owner=root group=root mode=0440
+- name: sudo configured
+  copy: src="sudoers" dest="/etc/sudoers" owner=root group=root mode=0440
 
 - name: sshd is configured
   notify:
