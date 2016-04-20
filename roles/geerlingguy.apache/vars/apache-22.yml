@@ -10,3 +10,8 @@ apache_ports_configuration_items:
     regexp: "^#?NameVirtualHost ",
     line: "NameVirtualHost *:{{ apache_listen_port }}"
   }
+apache_tokens_configuration_items:
+  - {
+    regexp: "^ServerTokens ",
+    line: "ServerTokens {{ apache_servertoken }}"
+  }

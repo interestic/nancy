@@ -5,7 +5,10 @@
     regexp: "{{ item.regexp }}"
     line: "{{ item.line }}"
     state: present
-  with_items: "{{ apache_ports_configuration_items }}"
+  with_items:
+    - "{{ apache_ports_configuration_items }}"
+    - regexp: "^ServerTokens "
+      line: "ServerTokens {{ apache_servertokens }}"
   notify: restart apache
   tags: apache
 
