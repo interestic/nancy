@@ -1,4 +1,5 @@
 users:
   - { name: nancy,  password: "$1$Pf94hVoJ$WCKYbHjIc7VTawJC7/GVn0", groups: "wheel" }
+  - { name: sid,  password: "$1$SxkavMvD$wPhHdl6MGysFZuaPCugkb0", groups: "wheel" }
   - { name: do9iigane,  password: "$1$1ijPl4dJ$V8Y9cQhMC1iK2bGXkThqv0", groups: "wheel" }
   - { name: rayfields,  password: "$1$c2kZ3gOk$Mi3CsStKivnrd2jN11Kdu1", groups: "wheel" }
