@@ -40,7 +40,7 @@
   tags: oscillo
 
 - name: clone sid
-  git: repo=git@github.com:interestic/sid.git dest=/var/www/oscillo/_shared version=master accept_hostkey=yes
+  git: repo=git@github.com:interestic/sid.git dest=/var/www/oscillo/_shared version=master accept_hostkey=no key_file=/home/nancy/.ssh/id_rsa
   tags: oscillo
 
 #- name: iptables is enabled and started
