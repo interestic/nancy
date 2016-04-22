@@ -30,6 +30,19 @@
   service: name=sshd state=running enabled=yes
   tags: sshd
 
+- name: vhost documentroot dir make
+  file: path=/var/www/oscillo/{{item}} state=directory owner=apache group=apache mode=0755
+  with_items:
+  - ['dev']
+  - ['_shared']
+  - ['prd']
+  - ['stg']
+  tags: oscillo
+
+- name: clone sid
+  git: repo=git@github.com:interestic/sid.git dest=/var/www/oscillo/_shared version=master accept_hostkey=yes
+  tags: oscillo
+
 #- name: iptables is enabled and started
 #  service: name=iptables state=running enabled=yes
 #  tags: iptables
