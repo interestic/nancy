@@ -1,3 +1,5 @@
+nancyは[sid](https://github.com/interestic/sid/)の夢を見る
+
 #exec command
 
 nancyの秘密鍵は以下が defaultで設定されています。  
