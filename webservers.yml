@@ -8,6 +8,7 @@
     - { role: geerlingguy.munin-node }
     - { role: geerlingguy.apache }
     - { role: geerlingguy.php }
+    - { role: geerlingguy.composer }
     - { role: geerlingguy.mysql }
     - { role: geerlingguy.php-mysql }
     - { role: geerlingguy.nodejs }

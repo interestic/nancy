@@ -23,6 +23,8 @@ apache_vhosts:
     documentroot: "/var/www/oscillo/stg/public"
   - servername: "oscillo.interestic.com"
     documentroot: "/var/www/oscillo/prd/public"
+  - servername: "sid.oscillo.interestic.com"
+    documentroot: "/var/www/oscillo/sid/public"
 #    serveralias: "www.oscillo.interestic.com"
 #    extra_parameters: |
 #          RewriteCond %{HTTP_HOST} !^www\. [NC]
