@@ -1,3 +1,6 @@
+- name : hostname fix
+  hostname : name="chelsea"
+  tags: host
 
 - name: users exist
   become : yes
