@@ -1,15 +1,24 @@
 #exec command
 
+nancyの秘密鍵は以下が defaultで設定されています。  
 ```
-$ ansible-playbook -i development site.yml -u {username} --private-key={private_key_path} {--tag={tagname}}
+~/.ssh/nancy/authorized_keys_for_nancy
+```  
+変更する場合は ansible.cfg:107 を変更してください。
+
+```
+$ ansible-playbook -i development site.yml {--tag={tagname}}
 ```
 ##tagname
+- users
+- sshd
+- oscillo
 - git
 - apache
 - php
 - mysql
 - php-mysql
-
+- nodejs
 
 when not target private-key by access
 
