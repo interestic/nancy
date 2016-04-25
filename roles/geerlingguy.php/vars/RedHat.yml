@@ -1,6 +1,7 @@
 ---
 __php_packages:
   - php
+  - php-posix
   - php-cli
   - php-common
   - php-devel
