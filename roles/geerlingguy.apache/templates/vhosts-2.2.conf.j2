@@ -8,7 +8,7 @@
     ServerName default
     ErrorLog /var/log/httpd/default-error_log
     CustomLog /var/log/httpd/default-access_log common
-#    Redirect permanent / https://www.pranalyzer.jp/
+#    Redirect permanent / https://www.oscillo.jp/
 </VirtualHost>
 
 {% for vhost in apache_vhosts %}
@@ -32,6 +32,8 @@
     Allow from all
   </Directory>
 {% endif %}
+    ErrorLog /var/log/httpd/{{ vhost.servername }}-error_log
+    CustomLog /var/log/httpd/{{ vhost.servername }}-access_log common
 {% if vhost.extra_parameters is defined %}
   {{ vhost.extra_parameters }}
 {% endif %}

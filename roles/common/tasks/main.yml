@@ -44,16 +44,31 @@
   tags: oscillo
 
 - name: clone sid
-  git: repo=git@github.com:interestic/sid.git dest=/var/www/oscillo/sid version=master accept_hostkey=no key_file=/home/nancy/.ssh/id_rsa
+  git: repo=git@github.com:interestic/sid.git dest=/var/www/oscillo/sid version=master accept_hostkey=no key_file=/home/nancy/.ssh/id_rsa force=yes
   tags: oscillo
 
-#- name: iptables is enabled and started
-#  service: name=iptables state=running enabled=yes
-#  tags: iptables
-#
-#- name: iptables is configured
-#  become : yes
-#  template: src="iptables" dest="/etc/sysconfig/iptables" owner=root group=root mode=0600
-#  notify:
-#    - restart iptables
-#  tags: iptables
+- name: setup sid [composer insatll]
+  shell:  /usr/local/bin/composer install
+  args:
+    chdir: /var/www/oscillo/sid
+  tags: oscillo
+
+- name: setup sid [composer update]
+
+  shell:  /usr/local/bin/composer update
+  args:
+    chdir: /var/www/oscillo/sid
+  tags: oscillo
+
+- name: create .env to sid
+  template:
+      src: "sid.env"
+      dest: /var/www/oscillo/sid/.env
+      owner: sid
+      group: sid
+      mode: 0644
+  tags: oscillo
+
+- name: permission change sid directory
+  file: path=/var/www/oscillo/sid state=directory owner=apache group=apache mode=0755 recurse=yes
+  tags: oscillo
