@@ -44,21 +44,26 @@
   tags: oscillo
 
 - name: clone sid
-  git: repo=git@github.com:interestic/sid.git dest=/var/www/oscillo/sid version=master accept_hostkey=no key_file=/home/nancy/.ssh/id_rsa force=yes
-  tags: oscillo_dev
+  git: repo=git@github.com:interestic/sid.git
+    dest=/var/www/oscillo/sid
+    version=master
+    accept_hostkey=no
+    key_file=/home/nancy/.ssh/id_rsa
+    force=yes
+  tags: sid
 
 - name: setup sid [composer insatll]
   shell:  /usr/local/bin/composer install
   args:
     chdir: /var/www/oscillo/sid
-  tags: oscillo
+  tags: sid
 
 - name: setup sid [composer update]
 
   shell:  /usr/local/bin/composer update
   args:
     chdir: /var/www/oscillo/sid
-  tags: oscillo
+  tags: sid
 
 - name: create .env to sid
   template:
@@ -67,12 +72,12 @@
       owner: sid
       group: sid
       mode: 0644
-  tags: oscillo
+  tags: sid
 
 - name: check exits repo
   stat: path=/var/www/oscillo/_shared/composer.json
   register: is_file
-  tags: oscillo_repo_check
+  tags: oscillo
 
 - name: clone oscillo to _shared
   git: repo=git@github.com:interestic/oscillo.git
@@ -83,7 +88,7 @@
     key_file=/home/nancy/.ssh/id_rsa
     force=yes
 #  when: is_file.stat.md5 is not defined
-  tags: oscillo_repo_check
+  tags: oscillo
 
 - name: permission change sid directory
   file: path=/var/www/oscillo/sid state=directory owner=apache group=apache mode=0755 recurse=yes
