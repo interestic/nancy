@@ -60,7 +60,7 @@
 
 - name: setup sid [composer update]
 
-  shell: /usr/local/bin/composer update
+  shell: /usr/local/bin/composer update && chmod 777 -R storage
   args:
     chdir: /var/www/oscillo/sid
   tags: sid
@@ -91,7 +91,7 @@
   tags: oscillo_dev
 
 - name: setup oscillo [composer insatll]
-  shell: /usr/local/bin/composer install
+  shell: /usr/local/bin/composer install && chmod 777 -R storage
   args:
     chdir: /var/www/oscillo/_shared
   tags: oscillo_dev
