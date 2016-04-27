@@ -1,0 +1,14 @@
+---
+language: python
+python: "2.7"
+before_install:
+ - sudo apt-get update -qq
+ - sudo apt-get install -qq python-apt python-pycurl
+install:
+  - pip install ansible
+
+script:
+  - echo localhost > development
+  - echo -n > ansible.cfg
+  - ansible-playbook -i development --syntax-check webservers.yml
+  - ansible-playbook -i development --connection=local --sudo -vvvv webservers.yml --tags=apache,munin
