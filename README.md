@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/interestic/nancy.svg?branch=master)](https://travis-ci.org/interestic/nancy)
+
+
 nancyは[sid](https://github.com/interestic/sid/)の夢を見る
 
 #exec command
