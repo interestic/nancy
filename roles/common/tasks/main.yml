@@ -53,14 +53,14 @@
   tags: sid
 
 - name: setup sid [composer insatll]
-  shell:  /usr/local/bin/composer install
+  shell: /usr/local/bin/composer install
   args:
     chdir: /var/www/oscillo/sid
   tags: sid
 
 - name: setup sid [composer update]
 
-  shell:  /usr/local/bin/composer update
+  shell: /usr/local/bin/composer update
   args:
     chdir: /var/www/oscillo/sid
   tags: sid
@@ -88,7 +88,13 @@
     key_file=/home/nancy/.ssh/id_rsa
     force=yes
 #  when: is_file.stat.md5 is not defined
-  tags: oscillo
+  tags: oscillo_dev
+
+- name: setup oscillo [composer insatll]
+  shell: /usr/local/bin/composer install
+  args:
+    chdir: /var/www/oscillo/_shared
+  tags: oscillo_dev
 
 - name: permission change sid directory
   file: path=/var/www/oscillo/sid state=directory owner=apache group=apache mode=0755 recurse=yes
