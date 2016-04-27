@@ -8,6 +8,7 @@ install:
   - pip install ansible
 
 script:
-  - echo localhost > inventory
-  - ansible-playbook -i inventory --syntax-check webservers.yml
-  - ansible-playbook -i inventory --connection=local --sudo -vvvv webservers.yml --tags=apache,munin
+  - echo localhost > development
+  - echo -n > ansible.cfg
+  - ansible-playbook -i development --syntax-check webservers.yml
+  - ansible-playbook -i development --connection=local --sudo -vvvv webservers.yml --tags=apache,munin
