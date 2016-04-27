@@ -6,10 +6,13 @@
 
 [webservers:children]
 webserver
+localhost
 
 [dbservers:children]
 dbserver
+localhost
 
 [servers:children]
 webserver
 dbserver
+localhost
