@@ -1,0 +1,40 @@
+---
+# Setup/install tasks.
+- include: setup-RedHat.yml
+  when: ansible_os_family == 'RedHat'
+  tags: mysql,phpmyadmin
+
+- include: setup-Debian.yml
+  when: ansible_os_family == 'Debian'
+  tags: mysql,phpmyadmin
+
+- name: Add default username and password for MySQL connection.
+  lineinfile: >
+    dest=/etc/phpMyAdmin/config.inc.php
+    state=present
+    regexp="^.+\['{{ item.key }}'\].+$"
+    line="$cfg['Servers'][$i]['{{ item.key }}'] = '{{ item.value }}';"
+    insertbefore="^\?>"
+  with_items:
+  - { key: host, value: "{{ phpmyadmin_mysql_host }}" }
+  - { key: port, value: "{{ phpmyadmin_mysql_port }}" }
+  - { key: socket, value: "{{ phpmyadmin_mysql_socket }}" }
+  - { key: connect_type, value: "{{ phpmyadmin_mysql_connect_type }}" }
+  - { key: user, value: "{{ phpmyadmin_mysql_user }}" }
+  - { key: password, value: "{{ phpmyadmin_mysql_password }}"}
+  tags: mysql,phpmyadmin
+
+- name: mod allow host 1
+  replace: >
+    dest=/etc/httpd/conf.d/phpMyAdmin.conf
+    regexp="127\.0\.0\.1$"
+    replace="127.0.0.1 111.89.174.81"
+  tags: mysql,phpmyadmin
+
+#追加する場合は、このブロックを追加していく感じで
+#- name: mod allow host 2
+#  replace: >
+#    dest=/etc/httpd/conf.d/phpMyAdmin.conf
+#    regexp="127\.0\.0\.1 111\.89\.174\.81$"
+#    replace="127.0.0.1 111.89.174.81 xxx.xxx.xxx.xxx"
+#  tags: mysql,phpmyadmin
