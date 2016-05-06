@@ -43,6 +43,8 @@ $ ansible-galaxy install 5003.rbenv
 $ ansible-galaxy install geerlingguy.php
 $ ansible-galaxy install geerlingguy.mysql
 $ ansible-galaxy install geerlingguy.php-mysql
+$ ansible-galaxy install geerlingguy.nodejs
+$ ansible-galaxy install geerlingguy.phpmyadmin
 ```
 
 ##munin
