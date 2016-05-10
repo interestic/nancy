@@ -100,8 +100,14 @@
     chdir: /var/www/oscillo/_shared
   tags: oscillo
 
+- name: gulp install
+  shell: /usr/bin/npm install -g gulp
+  args:
+      chdir: /var/www/oscillo/_shared
+  tags: gulp
+
 - name: setup _shared [npm install & bower install]
-  shell: /usr/bin/bower install & /usr/bin/npm install
+  shell: /usr/bin/npm install
   args:
     chdir: /var/www/oscillo/_shared
   tags: oscillo
