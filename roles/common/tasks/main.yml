@@ -74,6 +74,10 @@
       mode: 0644
   tags: sid
 
+- name: permission change sid directory
+  file: path=/var/www/oscillo/sid state=directory owner=apache group=apache mode=0755 recurse=yes
+  tags: sid
+
 - name: check exits repo
   stat: path=/var/www/oscillo/_shared/composer.json
   register: is_file
@@ -88,14 +92,32 @@
     key_file=/home/nancy/.ssh/id_rsa
     force=yes
 #  when: is_file.stat.md5 is not defined
-  tags: oscillo_dev
+  tags: oscillo
 
 - name: setup oscillo [composer insatll]
-  shell: /usr/local/bin/composer install && chmod 777 -R storage
+  shell: /usr/local/bin/composer install
   args:
     chdir: /var/www/oscillo/_shared
-  tags: oscillo_dev
+  tags: oscillo
 
-- name: permission change sid directory
-  file: path=/var/www/oscillo/sid state=directory owner=apache group=apache mode=0755 recurse=yes
+- name: gulp install
+  shell: /usr/bin/npm install -g gulp
+  args:
+      chdir: /var/www/oscillo/_shared
+  tags: gulp
+
+- name: setup _shared [npm install & bower install]
+  shell: /usr/bin/npm install
+  args:
+    chdir: /var/www/oscillo/_shared
+  tags: oscillo
+
+- name: exec gulp
+  shell: /usr/bin/gulp
+  args:
+    chdir: /var/www/oscillo/_shared
+  tags: gulp
+
+- name: permission change _shared directory
+  file: path=/var/www/oscillo/_shared state=directory owner=apache group=apache recurse=yes
   tags: oscillo
