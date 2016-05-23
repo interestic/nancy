@@ -121,3 +121,18 @@
 - name: permission change _shared directory
   file: path=/var/www/oscillo/_shared state=directory owner=apache group=apache recurse=yes
   tags: oscillo
+
+- name: permission change _shared directory
+  file: path=/var/www/oscillo/_shared state=directory owner=apache group=apache recurse=yes
+  tags: oscillo
+
+- name: set oscillo (laravel) schedules
+  cron: name="set oscillo schedule by {{item}}"
+        job="/usr/bin/php /var/www/oscillo/{{item}}/current/artisan schedule:run >> /dev/null 2>&1"
+        cron_file=oscillo_{{item}}
+        user="nancy"
+  with_items:
+  - ['dev']
+  - ['prd']
+  - ['stg']
+  tags: cron,oscillo
