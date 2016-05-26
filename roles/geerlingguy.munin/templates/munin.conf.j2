@@ -68,7 +68,7 @@ max_processes {{ munin_max_processes }}
 # RRD updates are per default, performed directly on the rrd files.
 # To reduce IO and enable the use of the rrdcached, uncomment it and set it to
 # the location of the socket that rrdcached uses.
-#rrdcached_socket /var/run/rrdcached.sock
+rrdcached_socket /var/run/rrdcached.sock
 
 # Drop somejuser@fnord.comm and anotheruser@blibb.comm an email everytime
 # something changes (OK -> WARNING, CRITICAL -> OK, etc)
