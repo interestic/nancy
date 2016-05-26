@@ -14,12 +14,18 @@ munin_plugin_src_path: /usr/share/munin/plugins/
 munin_plugin_dest_path: /etc/munin/plugins/
 
 # List of munin plugins to enable.
-munin_node_plugins: []
-  # - name: uptime
-  # - name: if_eth0
-  #   plugin: if_
-  # - name: ps_test
-  #   plugin: ps_
+munin_node_plugins:
+#[]
+#   - name: uptime
+#   - name: if_eth0
+  - name: memory
+  - name: cpu
+  - name: apache_accesses
+  - name: apache_processes
+  - name: apache_volume
+  - name: mysql_
+  - name: mysql_bytes
+  - name: mysql_innodb
 
 # Plugin configuration options (the key is the plugin heading, items in the
 # array will be options for the plugin).

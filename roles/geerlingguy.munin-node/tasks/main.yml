@@ -1,14 +1,17 @@
 ---
 - name: Include OS-specific variables.
   include_vars: "{{ ansible_os_family }}.yml"
+  tags: munin
 
 - name: Ensure munin-node is installed (RedHat).
   yum: name=munin-node state=installed enablerepo=epel
   when: ansible_os_family == 'RedHat'
+  tags: munin
 
 - name: Ensure munin-node is installed (Debian).
   apt: name=munin-node state=installed
   when: ansible_os_family == 'Debian'
+  tags: munin
 
 - name: Copy munin-node configuration.
   template:
@@ -18,6 +21,7 @@
     group: root
     mode: 0644
   notify: restart munin-node
+  tags: munin
 
 - name: Generate plugin configuration.
   template:
@@ -27,6 +31,7 @@
     group: root
     mode: 0644
   notify: restart munin-node
+  tags: munin
 
 - name: Enable additional plugins.
   file:
@@ -35,6 +40,8 @@
     state: link
   with_items: "{{ munin_node_plugins }}"
   notify: restart munin-node
+  tags: munin
 
 - name: Ensure munin-node is running.
   service: name=munin-node state=started enabled=yes
+  tags: munin
