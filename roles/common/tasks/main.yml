@@ -130,7 +130,7 @@
   cron: name="set oscillo schedule by {{item}}"
         job="/usr/bin/php /var/www/oscillo/{{item}}/current/artisan schedule:run >> /dev/null 2>&1"
         cron_file=oscillo_{{item}}
-        user="nancy"
+        user="apache"
   with_items:
   - ['dev']
   - ['prd']
