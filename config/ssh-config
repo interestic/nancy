@@ -3,4 +3,4 @@ Host chelsea
   User nancy
   Port 3843
   IdentitiesOnly yes
-  IdentityFile ~/.ssh/authorized_keys_for_nancy
+  IdentityFile ~/.ssh/nancy/authorized_keys_for_nancy
