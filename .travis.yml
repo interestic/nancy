@@ -7,7 +7,7 @@ before_install:
   - sudo apt-get install -qq python-apt python-pycurl
   - openssl aes-256-cbc -K $encrypted_88f990654ece_key -iv $encrypted_88f990654ece_iv -in authorized_keys_for_nancy.enc -out authorized_keys_for_nancy -d
   - mv -fv config/ssh-config ~/.ssh/config
-  - mv -fv authorized_keys_for_nancy ~/.ssh/nancy/authorized_keys_for_nancy
+  - mv -fv authorized_keys_for_nancy ~/.ssh/authorized_keys_for_nancy
   - rvm install 2.2.2
 
 install:
