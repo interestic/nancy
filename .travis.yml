@@ -19,3 +19,4 @@ script:
   - echo -n > ansible.cfg
   - ansible-playbook -i development --syntax-check webservers.yml
   - ansible-playbook -i development --connection=local --sudo -vvvv webservers.yml --tags=apache,munin
+  - bundle exec rake
