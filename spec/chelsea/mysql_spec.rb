@@ -1,14 +1,14 @@
 require 'spec_helper'
 
-describe package('httpd'), :if => os[:family] == 'redhat' do
+describe package('mysql-server') do
   it { should be_installed }
 end
 
-describe service('httpd'), :if => os[:family] == 'redhat' do
+describe service('mysqld') do
   it { should be_enabled }
   it { should be_running }
 end
 
-describe port(80) do
+describe port(3306) do
   it { should be_listening }
 end
