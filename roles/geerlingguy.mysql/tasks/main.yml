@@ -37,13 +37,13 @@
   tags: mysql
 
 # Configure MySQL.
-- include: configure.yml
-  tags: mysql
-- include: secure-installation.yml
-  tags: mysql
+#- include: configure.yml
+#  tags: mysql
+#- include: secure-installation.yml
+#  tags: mysql
 - include: databases.yml
   tags: mysql
-- include: users.yml
-  tags: mysql
+#- include: users.yml
+#  tags: mysql
 - include: replication.yml
   tags: mysql

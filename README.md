@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/interestic/nancy.svg?branch=master)](https://travis-ci.org/interestic/nancy)
+
+
 nancyは[sid](https://github.com/interestic/sid/)の夢を見る
 
 #exec command
@@ -40,6 +43,8 @@ $ ansible-galaxy install 5003.rbenv
 $ ansible-galaxy install geerlingguy.php
 $ ansible-galaxy install geerlingguy.mysql
 $ ansible-galaxy install geerlingguy.php-mysql
+$ ansible-galaxy install geerlingguy.nodejs
+$ ansible-galaxy install geerlingguy.phpmyadmin
 ```
 
 ##munin

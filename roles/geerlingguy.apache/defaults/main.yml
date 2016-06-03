@@ -18,11 +18,11 @@ apache_global_vhost_settings: |
 apache_vhosts:
   # Additional properties: 'serveradmin, serveralias, extra_parameters'.
   - servername: "dev.oscillo.interestic.com"
-    documentroot: "/var/www/oscillo/dev/public"
+    documentroot: "/var/www/oscillo/dev/current/public"
   - servername: "stg.oscillo.interestic.com"
-    documentroot: "/var/www/oscillo/stg/public"
+    documentroot: "/var/www/oscillo/stg/current/public"
   - servername: "oscillo.interestic.com"
-    documentroot: "/var/www/oscillo/prd/public"
+    documentroot: "/var/www/oscillo/prd/current/public"
   - servername: "sid.oscillo.interestic.com"
     documentroot: "/var/www/oscillo/sid/public"
 #    serveralias: "www.oscillo.interestic.com"

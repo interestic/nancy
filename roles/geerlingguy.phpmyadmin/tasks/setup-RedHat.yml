@@ -1,0 +1,5 @@
+---
+- name: Ensure PHPMyAdmin is installed.
+  yum: name=phpmyadmin state=installed enablerepo=remi-php56
+  notify: restart apache
+  tags: mysql,phpmyadmin

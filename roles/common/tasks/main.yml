@@ -44,21 +44,26 @@
   tags: oscillo
 
 - name: clone sid
-  git: repo=git@github.com:interestic/sid.git dest=/var/www/oscillo/sid version=master accept_hostkey=no key_file=/home/nancy/.ssh/id_rsa force=yes
-  tags: oscillo_dev
+  git: repo=git@github.com:interestic/sid.git
+    dest=/var/www/oscillo/sid
+    version=master
+    accept_hostkey=no
+    key_file=/home/nancy/.ssh/id_rsa
+    force=yes
+  tags: sid
 
 - name: setup sid [composer insatll]
-  shell:  /usr/local/bin/composer install
+  shell: /usr/local/bin/composer install
   args:
     chdir: /var/www/oscillo/sid
-  tags: oscillo
+  tags: sid
 
 - name: setup sid [composer update]
 
-  shell:  /usr/local/bin/composer update
+  shell: /usr/local/bin/composer update && chmod 777 -R storage
   args:
     chdir: /var/www/oscillo/sid
-  tags: oscillo
+  tags: sid
 
 - name: create .env to sid
   template:
@@ -67,12 +72,16 @@
       owner: sid
       group: sid
       mode: 0644
-  tags: oscillo
+  tags: sid
+
+- name: permission change sid directory
+  file: path=/var/www/oscillo/sid state=directory owner=apache group=apache mode=0755 recurse=yes
+  tags: sid
 
 - name: check exits repo
   stat: path=/var/www/oscillo/_shared/composer.json
   register: is_file
-  tags: oscillo_repo_check
+  tags: oscillo
 
 - name: clone oscillo to _shared
   git: repo=git@github.com:interestic/oscillo.git
@@ -83,8 +92,47 @@
     key_file=/home/nancy/.ssh/id_rsa
     force=yes
 #  when: is_file.stat.md5 is not defined
-  tags: oscillo_repo_check
-
-- name: permission change sid directory
-  file: path=/var/www/oscillo/sid state=directory owner=apache group=apache mode=0755 recurse=yes
   tags: oscillo
+
+- name: setup oscillo [composer insatll]
+  shell: /usr/local/bin/composer install
+  args:
+    chdir: /var/www/oscillo/_shared
+  tags: oscillo
+
+- name: gulp install
+  shell: /usr/bin/npm install -g gulp
+  args:
+      chdir: /var/www/oscillo/_shared
+  tags: gulp
+
+- name: setup _shared [npm install & bower install]
+  shell: /usr/bin/npm install
+  args:
+    chdir: /var/www/oscillo/_shared
+  tags: oscillo
+
+- name: exec gulp
+  shell: /usr/bin/gulp
+  args:
+    chdir: /var/www/oscillo/_shared
+  tags: gulp
+
+- name: permission change _shared directory
+  file: path=/var/www/oscillo/_shared state=directory owner=apache group=apache recurse=yes
+  tags: oscillo
+
+- name: permission change _shared directory
+  file: path=/var/www/oscillo/_shared state=directory owner=apache group=apache recurse=yes
+  tags: oscillo
+
+- name: set oscillo (laravel) schedules
+  cron: name="set oscillo schedule by {{item}}"
+        job="/usr/bin/php /var/www/oscillo/{{item}}/current/artisan schedule:run >> /dev/null 2>&1"
+        cron_file=oscillo_{{item}}
+        user="apache"
+  with_items:
+  - ['dev']
+  - ['prd']
+  - ['stg']
+  tags: cron,oscillo

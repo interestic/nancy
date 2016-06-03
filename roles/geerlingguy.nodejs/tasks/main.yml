@@ -52,3 +52,7 @@
   become_user: "{{ nodejs_install_npm_user }}"
   with_items: "{{ nodejs_npm_global_packages }}"
   tags: nodejs
+
+- name: install gulp & bower
+  shell: /usr/bin/npm install -g gulp bower
+  tags: nodejs
