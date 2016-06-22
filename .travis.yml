@@ -1,14 +1,22 @@
 ---
 language: python
 python: "2.7"
+
 before_install:
- - sudo apt-get update -qq
- - sudo apt-get install -qq python-apt python-pycurl
+  - sudo apt-get update -qq
+  - sudo apt-get install -qq python-apt python-pycurl
+  - openssl aes-256-cbc -K $encrypted_88f990654ece_key -iv $encrypted_88f990654ece_iv -in authorized_keys_for_nancy.enc -out authorized_keys_for_nancy -d
+  - mv -fv config/ssh-config ~/.ssh/config
+  - mv -fv authorized_keys_for_nancy ~/.ssh
+  - rvm install 2.2.2
+
 install:
   - pip install ansible
+  - bundle install --path vendor/budle
 
 script:
   - echo localhost > development
   - echo -n > ansible.cfg
   - ansible-playbook -i development --syntax-check webservers.yml
   - ansible-playbook -i development --connection=local --sudo -vvvv webservers.yml --tags=apache,munin
+  - bundle exec rake
