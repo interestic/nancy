@@ -1,0 +1,6 @@
+Host chelsea
+  HostName 27.120.106.27
+  User nancy
+  Port 3843
+  IdentitiesOnly yes
+  IdentityFile ~/.ssh/authorized_keys_for_nancy
